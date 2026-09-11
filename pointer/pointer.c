@@ -31,8 +31,18 @@ int main(void)
     printf("%d %d %d\n", *p, *(*pp + 1), heap->y);
     printf("local = {%d, %d}\n", local.x, local.y);
 
-    /* TODO (Part I): dynamically allocate an array of 100 struct pair
-       objects, initialize element i to {i, 2*i}, and free it. */
+    struct pair *objects = malloc(100 * sizeof *objects);
+    if (objects == NULL) {
+    	free(heap);
+    	return 1;
+    }
+
+    for (int i = 0; i < 100; i++) {
+    	objects[i].x = i;
+    	objects[i].y = 2 * i;
+    }
+
+    free(objects);
 
     free(heap);
     return 0;
