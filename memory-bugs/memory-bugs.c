@@ -42,7 +42,7 @@ static void test1(void)
     if (a == NULL)
         exit(EXIT_FAILURE);
 
-    for (size_t i = 0; i <= n; ++i)
+    for (size_t i = 0; i < n; ++i)
         a[i] = (int)(i * 10);
 
     printf("test1: %d\n", a[n - 1]);
@@ -56,7 +56,7 @@ static void test2(void)
     if (a == NULL)
         exit(EXIT_FAILURE);
 
-    initialize_prefix(a, n - 1);
+    initialize_prefix(a, n);
     printf("test2: %d\n", a[0] + a[1] + a[n - 1]);
     free(a);
 }
@@ -68,8 +68,8 @@ static void test3(void)
         exit(EXIT_FAILURE);
 
     *p = 473;
-    release_int(p);
     printf("test3: %d\n", *p);
+    release_int(p);
 }
 
 static void test4(void)
@@ -79,6 +79,7 @@ static void test4(void)
         exit(EXIT_FAILURE);
 
     printf("test4: %s\n", message);
+    free(message);
 }
 
 int main(int argc, char **argv)
